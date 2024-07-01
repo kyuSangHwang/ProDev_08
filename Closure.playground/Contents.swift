@@ -73,3 +73,8 @@ func addNumbers (x: Int, y: Int) -> Int {
 
  print(d(4,5))
  print(d(17,19))
+
+// 데이터로서의 클로저
+ print("-----------------")
+ print(d(4,5))
+ print(d(1, d(4,5)))
