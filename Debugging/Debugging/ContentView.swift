@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var message = "Temperature in Celsius: "
+    let temp = 36.5
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text(message + "\(temp)")
+            Text("Temperature in Fahrenheit: \(C2F(tempC: temp))")
         }
-        .padding()
+    }
+    
+    func C2F (tempC: Double) -> Double {
+        var tempF: Double
+        tempF = (tempC * 9/5) + 32
+        return tempF
     }
 }
 
