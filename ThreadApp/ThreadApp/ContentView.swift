@@ -17,24 +17,41 @@ struct ContentView: View {
             Button("Click Me") {
                 let startTime = NSDate() // 시작 시간 기록
                 
-                // 데이터 가져오기 및 처리
-                let fetchedData = fetchSomethingFromServer()
-                let processedData = processData(fetchedData)
-                let firstResult = calculateFirstResult(processedData)
-                let secondResult = calculateSecondResult(processedData)
+                let queue = DispatchQueue.global(qos: .default)
                 
-                // 처리 결과 요약
-                let resultsSummary = "First: [\(firstResult)]\nSecond: [\(secondResult)]"
-                results = resultsSummary
-                
-                let endTime = NSDate() // 종료 시간 기록
-                message = "Completed in \(endTime.timeIntervalSince(startTime as Date)) seconds" // 메시지에 소요된 시간 표시
+                // queue 안에 mainThread가 들어가는 건 적합하지 않다.
+                queue.async {
+                    // 데이터 가져오기 및 처리
+                    let fetchedData = fetchSomethingFromServer()
+                    let processedData = processData(fetchedData)
+                    
+                    var firstResult: String!
+                    var secondResult: String!
+                    let group = DispatchGroup()
+                    
+                    queue.async(group: group) {
+                        firstResult = calculateFirstResult(processedData)
+                    }
+                    
+                    queue.async(group: group) {
+                        secondResult = calculateSecondResult(processedData)
+                    }
+                    
+                    group.notify(queue: queue) {
+                        let resultsSummary = "First: [\(firstResult!)]\nSecond: [\(secondResult!)]"
+                        results = resultsSummary
+                        
+                        let endTime = NSDate()
+                        message = "Completed in \(endTime.timeIntervalSince(startTime as Date)) seconds."
+                    }
+                }
             }
             
             TextEditor(text: $results) // 결과를 보여주는 텍스트 에디터
             Slider(value: $sliderValue)
             Text("Message = \(message)") // 완료 메시지 표시
         }
+        .padding()
     }
     
     /// 서버에서 데이터를 가져오는 함수
