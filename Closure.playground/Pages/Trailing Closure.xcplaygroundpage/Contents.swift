@@ -18,11 +18,11 @@ func passParameters(closure: (Int, Int) -> Void) {
     print("First line")
     // 클로저의 반환값이 Void이므로 아무 값도 출력되지 않음
     let value = closure(4, 8)
-    print("value: \(value)")
+    print("value: \(value) \(x)")
     print("Second line")
 }
 
-passParameters() { x, y in
+passParameters { x, y in
     print("-- Closure code beginning")
     print("\(x * y)")
     print("-- ending")
