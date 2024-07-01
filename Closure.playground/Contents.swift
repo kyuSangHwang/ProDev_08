@@ -46,3 +46,30 @@ let v = { $0 * 2 }
 
 print(v(5))
 print(v(18))
+
+func addNumbers (x: Int, y: Int) -> Int {
+     return x + y
+ }
+
+ // 인풋 인자 타입 생략
+ let a = { (x, y) -> Int in return x + y }
+
+ print(a(4,5))
+ print(a(17,19))
+
+ // return 타입 생략
+ let b = { (x: Int, y: Int) in return x + y }
+
+ print(b(4,5))
+ print(b(17,19))
+
+ let c = { (x: Int, y: Int) in x + y }
+
+ print(c(4,5))
+ print(c(17,19))
+
+ // 모호성이 있는 경우, 매개변수의 데이터 유형을 명시적으로 정의해야함.
+ let d = { $0 as Int + $1 as Int }
+
+ print(d(4,5))
+ print(d(17,19))
