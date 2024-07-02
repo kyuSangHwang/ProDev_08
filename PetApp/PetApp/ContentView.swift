@@ -11,8 +11,10 @@ struct ContentView: View {
     let coreDM: CoreDataManager
     @State var petName: String = ""
     @State var petBreed: String = ""
-    @State var petArray: Array = [Animal]()
-    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Animal.name, ascending: true)],
+        animation: .default)
+    private var animals: FetchedResults<Animal>
     var body: some View {
         VStack {
             TextField("Enter pet name", text: $petName)
@@ -22,28 +24,26 @@ struct ContentView: View {
             
             Button("Save") {
                 coreDM.savePet(name: petName, breed: petBreed)
-                displayPets()
                 petName = ""
                 petBreed = ""
             }
             
             List {
-                ForEach(petArray, id: \.self) { pet in
-                    VStack {
+                ForEach(animals, id: \.self) { pet in
+                    VStack(alignment: .leading) {
                         Text(pet.name ?? "-")
                         Text(pet.breed ?? "-")
                     }
                 }
-            }
+                .onDelete(perform: { indexSet in
+                    indexSet.forEach { index in
+                        let pet = animals[index]
+                        coreDM.deletePet(animal: pet)
+                    }
+                })
+            } 
         }
         .padding()
-        .onAppear {
-            displayPets()
-        }
-    }
-    
-    func displayPets() {
-        petArray = coreDM.getAllPets()
     }
 }
 
