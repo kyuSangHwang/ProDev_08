@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    let coreDM: CoreDataManager
-    @State var petName: String = ""
-    @State var petBreed: String = ""
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @State var petName = ""
+    @State var petBreed = ""
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Animal.name, ascending: true)],
         animation: .default)
     private var animals: FetchedResults<Animal>
+    
     var body: some View {
         VStack {
             TextField("Enter pet name", text: $petName)
@@ -23,7 +25,14 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             Button("Save") {
-                coreDM.savePet(name: petName, breed: petBreed)
+                let pet = Animal(context: viewContext)
+                pet.name = petName
+                pet.breed = petBreed
+                do {
+                    try viewContext.save()
+                } catch {
+                    
+                }
                 petName = ""
                 petBreed = ""
             }
@@ -31,22 +40,17 @@ struct ContentView: View {
             List {
                 ForEach(animals, id: \.self) { pet in
                     VStack(alignment: .leading) {
-                        Text(pet.name ?? "-")
-                        Text(pet.breed ?? "-")
+                        Text(pet.name ?? "")
+                        Text(pet.breed ?? "")
                     }
                 }
-                .onDelete(perform: { indexSet in
-                    indexSet.forEach { index in
-                        let pet = animals[index]
-                        coreDM.deletePet(animal: pet)
-                    }
-                })
-            } 
+            }
         }
         .padding()
     }
 }
 
-#Preview {
-    ContentView(coreDM: CoreDataManager())
-}
+// 프리뷰 오류
+//#Preview {
+//    ContentView()
+//}

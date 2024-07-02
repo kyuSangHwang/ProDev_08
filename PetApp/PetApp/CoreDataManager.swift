@@ -6,17 +6,20 @@
 //
 
 import CoreData
-
 class CoreDataManager {
     let persistentContainer: NSPersistentContainer
     
     init() {
         persistentContainer = NSPersistentContainer(name: "DataModel")
+        // in memory
+        persistentContainer.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        
         persistentContainer.loadPersistentStores { (description, error) in
             if let error = error {
                 fatalError("Core Data failed to initialize \(error.localizedDescription)")
             }
         }
+        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
     
     // Create
@@ -40,7 +43,6 @@ class CoreDataManager {
         } catch {
             return []
         }
-        
     }
     
     // Delete
@@ -53,5 +55,4 @@ class CoreDataManager {
             print("Failed to save context \(error.localizedDescription)")
         }
     }
-    
 }
