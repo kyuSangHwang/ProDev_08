@@ -56,11 +56,11 @@
 			isa = PBXGroup;
 			children = (
 				78D95CA82C33B92B00D0A418 /* PetAppApp.swift */,
-				78D95CBB2C33BA4400D0A418 /* CoreDataManager.swift */,
 				78D95CAA2C33B92B00D0A418 /* ContentView.swift */,
+				78D95CB62C33B9EB00D0A418 /* DataModel.xcdatamodeld */,
+				78D95CBB2C33BA4400D0A418 /* CoreDataManager.swift */,
 				78D95CAC2C33B92C00D0A418 /* Assets.xcassets */,
 				78D95CAE2C33B92C00D0A418 /* Preview Content */,
-				78D95CB62C33B9EB00D0A418 /* DataModel.xcdatamodeld */,
 			);
 			path = PetApp;
 			sourceTree = "<group>";
