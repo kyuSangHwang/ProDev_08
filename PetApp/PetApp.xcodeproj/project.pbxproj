@@ -11,6 +11,7 @@
 		78D95CAB2C33B92B00D0A418 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D95CAA2C33B92B00D0A418 /* ContentView.swift */; };
 		78D95CAD2C33B92C00D0A418 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78D95CAC2C33B92C00D0A418 /* Assets.xcassets */; };
 		78D95CB02C33B92C00D0A418 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78D95CAF2C33B92C00D0A418 /* Preview Assets.xcassets */; };
+		78D95CB82C33B9EB00D0A418 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78D95CB62C33B9EB00D0A418 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		78D95CAA2C33B92B00D0A418 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		78D95CAC2C33B92C00D0A418 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78D95CAF2C33B92C00D0A418 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		78D95CB72C33B9EB00D0A418 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 				78D95CAA2C33B92B00D0A418 /* ContentView.swift */,
 				78D95CAC2C33B92C00D0A418 /* Assets.xcassets */,
 				78D95CAE2C33B92C00D0A418 /* Preview Content */,
+				78D95CB62C33B9EB00D0A418 /* DataModel.xcdatamodeld */,
 			);
 			path = PetApp;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D95CB82C33B9EB00D0A418 /* DataModel.xcdatamodeld in Sources */,
 				78D95CAB2C33B92B00D0A418 /* ContentView.swift in Sources */,
 				78D95CA92C33B92B00D0A418 /* PetAppApp.swift in Sources */,
 			);
@@ -342,6 +346,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		78D95CB62C33B9EB00D0A418 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				78D95CB72C33B9EB00D0A418 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 78D95CB72C33B9EB00D0A418 /* DataModel.xcdatamodel */;
+			name = DataModel.xcdatamodeld;
+			path = "/Users/dopeks/appschool5th/08-ProDev/PetApp/PetApp/DataModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 78D95C9D2C33B92B00D0A418 /* Project object */;
 }
