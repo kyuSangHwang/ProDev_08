@@ -13,6 +13,15 @@ struct ContentView: View {
     
     var placeHolder: LocalizedStringKey = "placeholder-label"
     
+    let date = Date()
+    
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full // full, long, medium, short
+        dateFormatter.timeStyle = .full
+        return dateFormatter
+    }()
+    
     var body: some View {
         VStack {
             Text(LocalizedStringKey("greeting-label \(message)"))  // 로컬라이즈된 문자열 키를 사용하여 텍스트를 표시
@@ -23,6 +32,7 @@ struct ContentView: View {
                 changeColor.toggle()
             }
             TextField(placeHolder, text: $message)
+            Text(date, formatter: dateFormatter)
         }
         .padding()
         .background(changeColor ? Color.red : Color.yellow)
