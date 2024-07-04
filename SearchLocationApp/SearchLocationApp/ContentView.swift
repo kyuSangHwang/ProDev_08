@@ -16,14 +16,18 @@ struct ContentView: View {
         NavigationStack {
             ZStack(alignment: .bottom) {
                 Map(position: $viewModel.cameraPosition, selection: $viewModel.selectedPlace) {
-                    ForEach(viewModel.searchResults, id: \.self) {
-                        place in
+                    ForEach(viewModel.searchResults, id: \.self) { place in
                         Annotation(place.name ?? "", coordinate: place.placemark.coordinate) {
                             Image(systemName: "mappin.circle.fill")
                                 .foregroundStyle(.red)
                                 .background(.white)
                                 .clipShape(Circle())
                         }
+                    }
+                    
+                    if let route = viewModel.route {
+                        MapPolyline(route.polyline)
+                            .stroke(.blue, lineWidth: 5)
                     }
                 }
                 .mapControls {

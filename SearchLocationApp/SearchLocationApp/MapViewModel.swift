@@ -15,7 +15,8 @@ class MapViewModel: NSObject, CLLocationManagerDelegate {
     var mapStyle: MapStyle = .standard  // 지도 스타일 설정 변수
     var searchResults: [MKMapItem] = [] // 검색 결과 저장 변수
     var selectedPlace: MKMapItem?
-    
+    var route: MKRoute?
+        
     private var locationManager: CLLocationManager = CLLocationManager() // 위치 관리자 인스턴스
     
     override init() {
@@ -46,7 +47,16 @@ class MapViewModel: NSObject, CLLocationManagerDelegate {
     }
     
     func getDirection() {
-        print("direction")
+        let request = MKDirections.Request()
+        request.source = MKMapItem.forCurrentLocation()
+        request.destination = selectedPlace!
+        request.transportType = .automobile
+        
+        let directions = MKDirections(request: request)
+        directions.calculate { [weak self] response, error in
+            guard let response = response else { return }
+            self?.route = response.routes.first
+        }
     }
     
     func shareLocation() {
