@@ -12,6 +12,7 @@
 		78EC595C2C36809000B60658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78EC595B2C36809000B60658 /* Assets.xcassets */; };
 		78EC595F2C36809000B60658 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78EC595E2C36809000B60658 /* Preview Assets.xcassets */; };
 		78EC59662C3681D400B60658 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EC59652C3681D400B60658 /* MapViewModel.swift */; };
+		78EC59682C36923200B60658 /* PlaceInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EC59672C36923200B60658 /* PlaceInfoPanel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		78EC595B2C36809000B60658 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78EC595E2C36809000B60658 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		78EC59652C3681D400B60658 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		78EC59672C36923200B60658 /* PlaceInfoPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoPanel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				78EC59572C36808E00B60658 /* SearchLocationAppApp.swift */,
 				78EC59592C36808E00B60658 /* ContentView.swift */,
+				78EC59672C36923200B60658 /* PlaceInfoPanel.swift */,
 				78EC59652C3681D400B60658 /* MapViewModel.swift */,
 				78EC595B2C36809000B60658 /* Assets.xcassets */,
 				78EC595D2C36809000B60658 /* Preview Content */,
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78EC59682C36923200B60658 /* PlaceInfoPanel.swift in Sources */,
 				78EC595A2C36808E00B60658 /* ContentView.swift in Sources */,
 				78EC59582C36808E00B60658 /* SearchLocationAppApp.swift in Sources */,
 				78EC59662C3681D400B60658 /* MapViewModel.swift in Sources */,

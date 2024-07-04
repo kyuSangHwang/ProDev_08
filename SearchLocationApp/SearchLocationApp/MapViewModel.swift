@@ -14,6 +14,7 @@ class MapViewModel: NSObject, CLLocationManagerDelegate {
     var searchText: String = "" // 검색어 저장 변수
     var mapStyle: MapStyle = .standard  // 지도 스타일 설정 변수
     var searchResults: [MKMapItem] = [] // 검색 결과 저장 변수
+    var selectedPlace: MKMapItem?
     
     private var locationManager: CLLocationManager = CLLocationManager() // 위치 관리자 인스턴스
     
@@ -44,8 +45,15 @@ class MapViewModel: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: CLLocationManagerDelegate
+    func getDirection() {
+        print("direction")
+    }
     
+    func shareLocation() {
+        print("share location")
+    }
+    
+    // MARK: CLLocationManagerDelegate
     /// 위치가 업데이트될 때 호출되는 메서드
     /// - Parameters:
     ///   - manager: CLLocationManager 인스턴스
