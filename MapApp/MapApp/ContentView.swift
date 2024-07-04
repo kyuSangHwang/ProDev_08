@@ -8,15 +8,29 @@
 import SwiftUI
 import MapKit
 
+extension CLLocationCoordinate2D {
+    static let paris = CLLocationCoordinate2D(latitude: 48.856613, longitude: 2.352222)
+}
+
 struct ContentView: View {
     let locationManager = CLLocationManager()   // CLLocationManager 인스턴스 생성, 이 객체는 사용자 위치를 관리 및 업데이트.
     
     @State var message = "Map of Paris"
-    @State private var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.856613, longitude: 2.352222), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    
+    @State private var position: MapCameraPosition = .region(MKCoordinateRegion(center: .paris, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)))
+    
+//    @State private var region: MKCoordinateRegion = MKCoordinateRegion(center: .paris, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     
     var body: some View {
         VStack {
-            Map(coordinateRegion: $region)
+            Map(position: $position) {
+                Annotation("에펠탑", coordinate: .paris) {
+                    Image(systemName: "mappin.circle.fill")
+                        .foregroundStyle(.purple)
+                        .background(.white)
+                        .clipShape(Circle())
+                }
+            }
             TextEditor(text: $message)
                 .frame(width: .infinity, height: 100)
         }
