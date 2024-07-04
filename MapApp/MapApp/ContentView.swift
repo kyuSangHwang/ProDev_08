@@ -69,8 +69,6 @@ struct ContentView: View {
             // iOS 17 이전 코드
             Map(coordinateRegion: $region,
                 annotationItems: identifiablePlaces) { place in
-//                MapMarker(coordinate: place.location,
-//                          tint: Color.purple)
                 MapPin(coordinate: place.location,
                        tint: Color.purple)
             }
