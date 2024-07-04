@@ -13,10 +13,13 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text(LocalizedStringKey("greeting-label"))  // 로컬라이즈된 문자열 키를 사용하여 텍스트를 표시
+            
+            // Text, Button 는 LocalizedStringKey 를 직접 넣을 수 있다.
             Text("greeting-label")
             Button("button-label") {
                 changeColor.toggle()
             }
+            
         }
         .padding()
         .background(changeColor ? Color.red : Color.yellow)
@@ -28,6 +31,7 @@ struct ContentView: View {
     ContentView()
 }
 
+// MARK: 언어 미리보기 설정
 // 영어로 프리뷰 설정
 #Preview("English") {
     ContentView()
