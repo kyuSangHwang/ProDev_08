@@ -60,6 +60,37 @@ struct ContentView: View {
     }
     
     func useAI(sentImage: String) {
+        guard let imagePath = Bundle.main.path(forResource: sentImage, ofType: "jpg") else {
+            message = "Image not found"
+            return
+        }
+        
+        let imageURL = NSURL.fileURL(withPath: imagePath)
+        
+        let modelFile = try? MobileNetV2(configuration: MLModelConfiguration())
+        let model = try! VNCoreMLModel(for: modelFile!.model)
+        
+        let handler = VNImageRequestHandler(url: imageURL)
+        
+        let request = VNCoreMLRequest(model: model, completionHandler: findResults)
+        
+        try! handler.perform([request])
+    }
+    
+    func findResults(request: VNRequest, error: Error?) {
+        guard let results = request.results as? [VNClassificationObservation] else {
+            fatalError("Unable to get results")
+        }
+        
+        var bestGuess = ""
+        var bestConfidence: VNConfidence = 0
+        
+        for classification in results {
+            if classification.confidence > bestConfidence {
+                bestConfidence = classification.confidence
+                bestGuess = classification.identifier
+            }
+        }
     }
 }
 
